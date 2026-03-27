@@ -50,13 +50,12 @@ final class WebViewExternalMessageHandler: @preconcurrency WebViewExternalMessag
         if let externalBusMessage = WebViewExternalBusMessage(rawValue: incomingMessage.MessageType) {
             switch externalBusMessage {
             case .configGet:
-                let configResult = WebViewExternalBusMessage.configResult(server: webViewController.server)
                 response = Guarantee { seal in
                     DispatchQueue.global(qos: .userInitiated).async {
                         seal(WebSocketMessage(
                             id: incomingMessage.ID!,
                             type: "result",
-                            result: configResult
+                            result: WebViewExternalBusMessage.configResult
                         ))
                     }
                 }

@@ -30,7 +30,7 @@ enum WebViewExternalBusMessage: String, CaseIterable {
     case entityAddTo = "entity/add_to"
     case cameraPlayerShow = "camera/show"
 
-    @MainActor static func configResult(server: Server?) -> [String: Any] {
+    @MainActor static var configResult: [String: Any] {
         [
             "hasSettingsScreen": !Current.isCatalyst,
             "canWriteTag": Current.tags.isNFCAvailable,
@@ -59,7 +59,7 @@ enum WebViewExternalBusMessage: String, CaseIterable {
                     return -1
                 }
             }(),
-            "deviceName": server?.info.setting(for: .overrideDeviceName) ?? Current.device.deviceName(),
+            "deviceName": Current.device.deviceName(),
         ]
     }
 }

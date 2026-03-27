@@ -58,7 +58,7 @@ final class WebViewExternalBusMessageTests: XCTestCase {
     }
 
     @MainActor func testConfigResultIncludesAllExpectedKeys() {
-        let result = WebViewExternalBusMessage.configResult
+        let result = WebViewExternalBusMessage.configResult(server: nil)
 
         // Expected keys currently defined in WebViewExternalBusMessage.configResult
         let expectedKeys: Set<String> = [
@@ -76,6 +76,7 @@ final class WebViewExternalBusMessageTests: XCTestCase {
             "hasEntityAddTo",
             "appVersion",
             "toastComponentVersion",
+            "deviceName",
         ]
 
         let actualKeys = Set(result.keys)
